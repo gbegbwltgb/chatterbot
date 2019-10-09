@@ -3,8 +3,9 @@ import java.util.*;
 public class Game { //на вход подается животное с набором качеств и в зависимости от этого составляется словарь вопросов и ответов
     public static int compScore;
     public static int userScore;
-    public static String userName;
     public static boolean isBegan = false;
+    public String currentQuestion = "";
+    public static String Rules = "Для начала игры введите /start.\nЧтобы узнать правила, введите /help.\nЧтобы узнать счёт, введите /score.\nЧтобы выйти из игры, введите /quit";
     public static Animal[] animals = {
         new Animal("ворон", "черный", "лес", "маленький"),
         new Animal("белка", "оранжевый", "лес", "маленький"),
@@ -13,26 +14,19 @@ public class Game { //на вход подается животное с наб�
     };
     public static Animal myAnimal = new Animal("myAnimal","", "", "");
     public Random rnd = new Random();
-    static String[] colors = {
-            "белый",
-            "черный",
-            "синий",
-            "оранжевый"};
-    static String[] area = {
-            "джунгли",
-            "лес",
-            "пустыня",
-            "вода"};
+    static String[] colors = {"белый", "черный", "синий", "оранжевый"};
+    static String[] area = {"джунгли", "лес", "пустыня", "вода"};
+    static String[] size = {"огромный", "большой", "средний", "маленький"};
+    public ArrayList Questions;
+    public static HashMap<String, String> Answers = new HashMap<String, String>();
 
-    static String[] size = {
-            "огромный",
-            "большой",
-            "средний",
-            "маленький"};
-
-    public Game(String name){
-        userName = name;
+    public Game(){
         isBegan = true;
+        Questions = new ArrayList();
+        MakeQuestions();
+    }
+
+    public void MakeQuestions(){
         for (String x : area) {
             Questions.add(String.format("area: Среда обитания этого животного - %s", x));
         }
@@ -42,52 +36,17 @@ public class Game { //на вход подается животное с наб�
         for (String x : colors) {
             Questions.add(String.format("color: Цвет этого животного - %s", x));
         }
-        System.out.printf("Игра началась, %s.....\nЗагадайте животное.\n", userName);
     }
-    /*final HashMap<String, String> AllQuestions = new HashMap<String, String>() {{
-        for (String x : area) {
-            if (x.equals(animal.area)) {
-                put(String.format("\nСреда обитания этого животного - %s?", x), "да");
-            } else {
-                put(String.format("\nСреда обитания этого животного - %s?", x), "нет");
-            }
-        }
-        for (String x : size) {
-            if (x.equals(animal.size)) {
-                put(String.format("\nРазмер этого животного - %s?", x), "да");
-            } else {
-                put(String.format("\nРазмер этого животного - %s?", x), "нет");
-            }
-        }
-        for (String x : colors) {
-            if (x.equals(animal.color)) {
-                put(String.format("\nЦвет этого животного - %s?", x), "да");
-            } else {
-                put(String.format("\nЦвет этого животного - %s?", x), "нет");
-            }
-        }
-    }};*/
-    public static ArrayList Questions = new ArrayList();
-    /*public String[] GetRandomQuestions() {
-        String[] questions = new String[3];
-        Map<String, String> list = AllQuestions;
-        questions[0] = "1) " + QuestionsForColors.keySet().toArray()[rnd.nextInt(4)].toString();
-        questions[1] = "2) " + QuestionsForArea.keySet().toArray()[rnd.nextInt(4)].toString();
-        questions[2] = "3) " + QuestionsForSize.keySet().toArray()[rnd.nextInt(4)].toString();
-        for (int i=0; i < questions.length; i++){
-            String question = AllQuestions.keySet().toArray()[rnd.nextInt(list.size())].toString();
-            questions[i] = (i+1) +") " + question;
-            list.remove(question);
-            RandomQuestions[i] = question;
-            userQuestions.put(question, AllQuestions.get(question));
-        }
-        RandomQuestions = questions;
-        return questions;
-    }*/
-    public static HashMap<String, String> Answers = new HashMap<String, String>();
+
+    public int getCompScore(){
+        return compScore;
+    }
+
+    public int getUserScore(){
+        return userScore;
+    }
 
     public String GetRandomQuestion() {
-        //return AllQuestions.keySet().toArray()[rnd.nextInt(12)].toString();
         return (String) Questions.remove(rnd.nextInt(Questions.toArray().length));
     }
 
@@ -110,9 +69,6 @@ public class Game { //на вход подается животное с наб�
                 }
             }
         }
-        //System.out.print(myAnimal.area);
-        //System.out.print(myAnimal.color);
-        //System.out.print(myAnimal.size);
 
         for (Animal animal : animals){
             if (Animal.equals(animal, myAnimal)){
@@ -124,4 +80,3 @@ public class Game { //на вход подается животное с наб�
         return "Я не знаю такое животное :(";
     }
 }
-

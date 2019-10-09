@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="15a723b6-1510-4497-8450-e3bf14b2b153" name="Default Changelist" comment="" />
+    <list default="true" id="15a723b6-1510-4497-8450-e3bf14b2b153" name="Default Changelist" comment="Консольный ввод и вывод вынесены в отдельные методы. Удалены лишние комментарии. Добавлена команда /quit.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chatterbot/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chatterbot/Game.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chatterbot/MyDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chatterbot/MyDialog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MyDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MyDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Program.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,8 +22,12 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1RSgH0SkkofcWiG250imdM8DGDo" />
   <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -59,5 +70,20 @@
       <updated>1569665819983</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Консольный ввод и вывод вынесены в отдельные методы. Удалены лишние комментарии. Добавлена команда /quit." />
+    <option name="LAST_COMMIT_MESSAGE" value="Консольный ввод и вывод вынесены в отдельные методы. Удалены лишние комментарии. Добавлена команда /quit." />
   </component>
 </project>
