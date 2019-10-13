@@ -9,14 +9,14 @@ public class Game { //на вход подается животное с наб�
     public static Animal[] animals = {
         new Animal("ворон", "черный", "лес", "маленький"),
         new Animal("белка", "оранжевый", "лес", "маленький"),
-        new Animal("кит", "синий", "вода", "огромный"),
+        new Animal("кит", "синий", "вода", "большой"),
         //new Animal(),
     };
     public static Animal myAnimal = new Animal("myAnimal","", "", "");
     public Random rnd = new Random();
     static String[] colors = {"белый", "черный", "синий", "оранжевый"};
     static String[] area = {"джунгли", "лес", "пустыня", "вода"};
-    static String[] size = {"огромный", "большой", "средний", "маленький"};
+    static String[] size = {"большой", "средний", "маленький"};
     public ArrayList Questions;
     public static HashMap<String, String> Answers = new HashMap<String, String>();
 
@@ -53,9 +53,24 @@ public class Game { //на вход подается животное с наб�
     public static void PutAnswer(String question, String answer){
         Answers.put(question, answer);
     }
+    public static Animal MakeAnimal(){
+        for (String question : Answers.keySet()) {
+            if (Answers.get(question).equals("yes")) {
+                String[] temp = question.split(" ");
+                if (question.split(":")[0].equals("area")) {
+                    myAnimal.area = temp[temp.length - 1];
+                } else if (question.split(":")[0].equals("color")) {
+                    myAnimal.color = temp[temp.length - 1];
+                } else if (question.split(":")[0].equals("size")) {
+                    myAnimal.size = temp[temp.length - 1];
+                }
+            }
+        }
+        return myAnimal;
+    }
 
     public static String GuessAnimal(){
-        for (String question : Answers.keySet()){
+        /*for (String question : Answers.keySet()){
             if (Answers.get(question).equals("yes")){
                 String[] temp = question.split(" ");
                 if (question.split(":")[0].equals("area")){
@@ -68,8 +83,8 @@ public class Game { //на вход подается животное с наб�
                     myAnimal.size = temp[temp.length - 1];
                 }
             }
-        }
-
+        }*/
+        MakeAnimal();
         for (Animal animal : animals){
             if (Animal.equals(animal, myAnimal)){
                 compScore++;

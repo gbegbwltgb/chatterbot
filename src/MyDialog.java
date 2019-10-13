@@ -48,12 +48,15 @@ public class MyDialog {
         game = new Game();
         MyDialog.PrintOut(String.format("Игра началась, %s.\nЗагадайте животное и нажмите пробел.", name));
         //if (Read().equals(" ")) {
-            for (var i = 0; i < 12; i++) {
+            for (var i = 0; i < 11; i++) {
                 String question = game.GetRandomQuestion();
                 game.currentQuestion = question;
-                PrintOut(question);
+                PrintOut(question.split(":")[1]);
                 String answer = Read();
                 GetReaction(answer);
+                if (!game.GuessAnimal().equals("Я не знаю такое животное :(")){
+                    break;
+                }
                 //game.PutAnswer(question, answer);
             }
             PrintOut("Дайте-ка подумать...");

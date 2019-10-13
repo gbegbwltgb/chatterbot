@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="15a723b6-1510-4497-8450-e3bf14b2b153" name="Default Changelist" comment="Консольный ввод и вывод вынесены в отдельные методы. Удалены лишние комментарии. Добавлена команда /quit.">
+    <list default="true" id="15a723b6-1510-4497-8450-e3bf14b2b153" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chatterbot.iml" beforeDir="false" afterPath="$PROJECT_DIR$/chatterbot.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/chatterbot/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chatterbot/Game.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/chatterbot/MyDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chatterbot/MyDialog.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MyDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MyDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Program.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,6 +19,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -27,10 +28,25 @@
   </component>
   <component name="ProjectId" id="1RSgH0SkkofcWiG250imdM8DGDo" />
   <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="create.test.in.the.same.root" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -69,6 +85,14 @@
       <option name="presentableId" value="Default" />
       <updated>1569665819983</updated>
     </task>
+    <task id="LOCAL-00001" summary="Консольный ввод и вывод вынесены в отдельные методы. Удалены лишние комментарии. Добавлена команда /quit.">
+      <created>1570655939157</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1570655939158</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -76,7 +100,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
