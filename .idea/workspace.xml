@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="15a723b6-1510-4497-8450-e3bf14b2b153" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chatterbot.iml" beforeDir="false" afterPath="$PROJECT_DIR$/chatterbot.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/chatterbot/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chatterbot/Game.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/chatterbot/MyDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chatterbot/MyDialog.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
@@ -111,5 +110,16 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Консольный ввод и вывод вынесены в отдельные методы. Удалены лишние комментарии. Добавлена команда /quit." />
     <option name="LAST_COMMIT_MESSAGE" value="Консольный ввод и вывод вынесены в отдельные методы. Удалены лишние комментарии. Добавлена команда /quit." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/MyDialog.java</url>
+          <line>71</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
