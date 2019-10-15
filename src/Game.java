@@ -1,11 +1,13 @@
 import java.util.*;
 
-public class Game { //на вход подается животное с набором качеств и в зависимости от этого составляется словарь вопросов и ответов
-    public int compScore;
-    public int userScore;
+public class Game {
+    public static int compScore;
+    public static int userScore;
     public static boolean isBegan = false;
-    public String currentQuestion = "";
-    public static String Rules = "Для начала игры введите /start.\nЧтобы узнать правила, введите /help.\nЧтобы узнать счёт, введите /score.\nЧтобы начать сначала, введите /again.\nЧтобы выйти из игры, введите /quit";
+    public static String currentQuestion = "";
+    public static int questionCount = 11;
+    public static int askedQuestions = 0;
+    public static String Rules = "Для начала игры введите /start.\nЧтобы узнать правила, введите /help.\nЧтобы узнать счёт, введите /score.\nЧтобы начать сначала, введите /again.\nЧтобы выйти из игры, введите /exit";
     public static Animal[] animals = {
         new Animal("ворон", "черный", "лес", "маленький"),
         new Animal("белка", "оранжевый", "лес", "маленький"),
@@ -13,12 +15,12 @@ public class Game { //на вход подается животное с наб�
         //new Animal(),
     };
     public static Animal myAnimal = new Animal("myAnimal","", "", "");
-    private Random rnd = new Random();
+    private static Random rnd = new Random();
     static String[] colors = {"белый", "черный", "синий", "оранжевый"};
     static String[] area = {"джунгли", "лес", "пустыня", "вода"};
     static String[] size = {"большой", "средний", "маленький"};
-    public ArrayList Questions;
-    public HashMap<String, String> Answers = new HashMap<String, String>();
+    public static ArrayList Questions;
+    public static HashMap<String, String> Answers = new HashMap<String, String>();
 
     public Game(){
         isBegan = true;
@@ -26,7 +28,7 @@ public class Game { //на вход подается животное с наб�
         MakeQuestions();
     }
 
-    private void MakeQuestions(){
+    private static void MakeQuestions(){
         for (String x : area) {
             Questions.add(String.format("area: Среда обитания этого животного - %s", x));
         }
@@ -46,7 +48,7 @@ public class Game { //на вход подается животное с наб�
         return userScore;
     }
 
-    public String GetRandomQuestion() {
+    public static String GetRandomQuestion() {
         return (String) Questions.get(rnd.nextInt(Questions.toArray().length));
     }
 
@@ -54,7 +56,7 @@ public class Game { //на вход подается животное с наб�
         Answers.put(question, answer);
     }
 
-    public void MakeAnimal(){
+    public static void MakeAnimal(){
         for (String question : Answers.keySet()) {
             if (Answers.get(question).equals("да")) {
                 String[] temp = question.split(" ");
@@ -70,14 +72,11 @@ public class Game { //на вход подается животное с наб�
     }
 
     public static String GuessAnimal(){
-        //myAnimal = MakeAnimal();
         for (Animal animal : animals){
             if (Animal.equals(animal, myAnimal)){
-                //compScore++;
                 return String.format("Загаданное животное - %s.", animal.name);
             }
         }
-        //userScore++;
         return "Я не знаю такое животное :(";
     }
 
@@ -86,5 +85,27 @@ public class Game { //на вход подается животное с наб�
         MakeQuestions();
         Answers = new HashMap<String, String>();
         myAnimal = new Animal("myAnimal","", "", "");
+        askedQuestions = 0;
+    }
+
+    public static String PlayGame() {
+        if (askedQuestions < questionCount) {
+            String question = GetRandomQuestion();
+            currentQuestion = question;
+            MakeAnimal();
+
+            if (!GuessAnimal().equals("Я не знаю такое животное :(")) {
+                compScore++;
+                MyDialog.CommonPhrases.replace("/score", String.format("Компьютер - %s : Пользователь - %d", compScore, userScore));
+                Program.PrintOut("Дайте-ка подумать...");
+                return GuessAnimal();
+            } else {
+                return (currentQuestion.split(": ")[1]);
+            }
+        } else {
+            userScore++;
+        }
+        MyDialog.CommonPhrases.replace("/score", String.format("Компьютер - %s : Пользователь - %d", compScore, userScore));
+        return (GuessAnimal());
     }
 }

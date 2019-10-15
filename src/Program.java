@@ -6,9 +6,12 @@ public class Program {
         MyDialog dialog = new MyDialog();
         while (true) {//перенести цикл в класс диалога
             var command = newscan.next();
-            dialog.GetReaction(command);
+            PrintOut(dialog.GetReaction(command));
         }
         //newscan.close();
         }
+    public static void PrintOut(String msg){
+        System.out.println(msg);
     }
+}
 
