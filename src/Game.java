@@ -1,34 +1,34 @@
 import java.util.*;
 
 public class Game {
-    public static int compScore;
-    public static int userScore;
-    public static boolean isBegan = false;
-    public static String currentQuestion = "";
+    public int compScore;
+    public int userScore;
+    public boolean isBegan = false;
+    public String currentQuestion = "";
     public static int questionCount = 11;
-    public static int askedQuestions = 0;
+    public int askedQuestions = 0;
     public static String Rules = "Для начала игры введите /start.\nЧтобы узнать правила, введите /help.\nЧтобы узнать счёт, введите /score.\nЧтобы начать сначала, введите /again.\nЧтобы выйти из игры, введите /exit";
     public static Animal[] animals = {
-        new Animal("ворон", "черный", "лес", "маленький"),
-        new Animal("белка", "оранжевый", "лес", "маленький"),
-        new Animal("кит", "синий", "вода", "большой"),
-        //new Animal(),
+            new Animal("ворон", "черный", "лес", "маленький"),
+            new Animal("белка", "оранжевый", "лес", "маленький"),
+            new Animal("кит", "синий", "вода", "большой"),
+            //new Animal(),
     };
-    public static Animal myAnimal = new Animal("myAnimal","", "", "");
+    public Animal myAnimal = new Animal("myAnimal", "", "", "");
     private static Random rnd = new Random();
-    static String[] colors = {"белый", "черный", "синий", "оранжевый"};
-    static String[] area = {"джунгли", "лес", "пустыня", "вода"};
-    static String[] size = {"большой", "средний", "маленький"};
+    private static String[] colors = {"белый", "черный", "синий", "оранжевый"};
+    private static String[] area = {"джунгли", "лес", "пустыня", "вода"};
+    private static String[] size = {"большой", "средний", "маленький"};
     public static ArrayList Questions;
-    public static HashMap<String, String> Answers = new HashMap<String, String>();
+    private HashMap<String, String> Answers = new HashMap<String, String>();
 
-    public Game(){
+    public Game() {
         isBegan = true;
         Questions = new ArrayList();
         MakeQuestions();
     }
 
-    private static void MakeQuestions(){
+    private static void MakeQuestions() {
         for (String x : area) {
             Questions.add(String.format("area: Среда обитания этого животного - %s", x));
         }
@@ -40,23 +40,15 @@ public class Game {
         }
     }
 
-    public int getCompScore(){
-        return compScore;
-    }
-
-    public int getUserScore(){
-        return userScore;
-    }
-
-    public static String GetRandomQuestion() {
+    public String GetRandomQuestion() {
         return (String) Questions.get(rnd.nextInt(Questions.toArray().length));
     }
 
-    public void PutAnswer(String question, String answer){
+    public void PutAnswer(String question, String answer) {
         Answers.put(question, answer);
     }
 
-    public static void MakeAnimal(){
+    public void MakeAnimal() {
         for (String question : Answers.keySet()) {
             if (Answers.get(question).equals("да")) {
                 String[] temp = question.split(" ");
@@ -71,41 +63,46 @@ public class Game {
         }
     }
 
-    public static String GuessAnimal(){
-        for (Animal animal : animals){
-            if (Animal.equals(animal, myAnimal)){
-                return String.format("Загаданное животное - %s.", animal.name);
+    public Animal GuessAnimal() {
+        MakeAnimal();
+        for (Animal animal : animals) {
+            if (Animal.equals(animal, myAnimal)) {
+                return animal;
             }
         }
-        return "Я не знаю такое животное :(";
+        return null;
     }
 
-    public void UpdateGame(){
+    public void UpdateGame() {
         Questions = new ArrayList();
         MakeQuestions();
         Answers = new HashMap<String, String>();
-        myAnimal = new Animal("myAnimal","", "", "");
+        myAnimal = new Animal("myAnimal", "", "", "");
         askedQuestions = 0;
     }
 
-    public static String PlayGame() {
+    public String PlayGame() {
         if (askedQuestions < questionCount) {
             String question = GetRandomQuestion();
             currentQuestion = question;
-            MakeAnimal();
-
-            if (!GuessAnimal().equals("Я не знаю такое животное :(")) {
+            Animal animal = GuessAnimal();
+            if (animal != null) {
                 compScore++;
                 MyDialog.CommonPhrases.replace("/score", String.format("Компьютер - %s : Пользователь - %d", compScore, userScore));
                 Program.PrintOut("Дайте-ка подумать...");
-                return GuessAnimal();
+                //return GuessAnimal();
+                return String.format("Загаданное животное - %s.", animal.name);
             } else {
                 return (currentQuestion.split(": ")[1]);
             }
-        } else {
-            userScore++;
         }
+        Animal animal = GuessAnimal(); //проверка последнего вопроса
+        if (animal != null) {
+            compScore++;
+            return String.format("Загаданное животное - %s.", animal.name);
+        }
+        userScore++;
         MyDialog.CommonPhrases.replace("/score", String.format("Компьютер - %s : Пользователь - %d", compScore, userScore));
-        return (GuessAnimal());
+        return "Я не знаю такое животное :(";
     }
 }

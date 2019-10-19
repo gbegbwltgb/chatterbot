@@ -2,15 +2,16 @@ import java.util.Scanner;
 
 public class Program {
     public static void main(String[] args) {
-        Scanner newscan= new Scanner(System.in);//.useDelimiter(" ");
+        Scanner newscan = new Scanner(System.in);//.useDelimiter(" ");
         MyDialog dialog = new MyDialog();
-        while (true) {//перенести цикл в класс диалога
+        while (true) {
             var command = newscan.next();
             PrintOut(dialog.GetReaction(command));
         }
         //newscan.close();
-        }
-    public static void PrintOut(String msg){
+    }
+
+    public static void PrintOut(String msg) {
         System.out.println(msg);
     }
 }

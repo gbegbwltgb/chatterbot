@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="15a723b6-1510-4497-8450-e3bf14b2b153" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Mockito/Mock.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chatterbot.iml" beforeDir="false" afterPath="$PROJECT_DIR$/chatterbot.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/chatterbot/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chatterbot/Game.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/chatterbot/MyDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chatterbot/MyDialog.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chatterbot/Program.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chatterbot/Program.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Mockito/Mock.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MyDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MyDialog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Program.java" afterDir="false" />
     </list>
@@ -99,7 +97,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570655939158</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Исправлены методы GetReaction и PlayGame">
+      <created>1571171600115</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1571171600115</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -117,6 +122,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Консольный ввод и вывод вынесены в отдельные методы. Удалены лишние комментарии. Добавлена команда /quit." />
-    <option name="LAST_COMMIT_MESSAGE" value="Консольный ввод и вывод вынесены в отдельные методы. Удалены лишние комментарии. Добавлена команда /quit." />
+    <MESSAGE value="Исправлены методы GetReaction и PlayGame" />
+    <option name="LAST_COMMIT_MESSAGE" value="Исправлены методы GetReaction и PlayGame" />
   </component>
 </project>
