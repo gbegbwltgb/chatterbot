@@ -1,9 +1,8 @@
 import java.util.HashMap;
-import java.util.Scanner;
 
 public class MyDialog {
     public static String name;
-    public static Game game;
+    public static Game game = null;
     public static HashMap<String, String> CommonPhrases = new HashMap<String, String>();
 
     public MyDialog() {
@@ -35,26 +34,37 @@ public class MyDialog {
         } else if (command.equals("/exit")) {
             Program.PrintOut("До свидания.");
             System.exit(0);
-        } else if (CommonPhrases.containsKey(command)) {
+        } else if (CommonPhrases.containsKey(command) && isCommand(command)) {
             return (CommonPhrases.get(command));
-        } else if (game != null && game.askedQuestions != game.questionCount) {
-            if (!command.equals("да") && !command.equals("нет")) {
+        } else if (game != null && game.askedQuestions < game.questionCount) {
                 if (name == null) {
                     name = command;
                     Program.PrintOut(String.format("Игра началась, %s.\nЗагадайте животное.", name));
-                } else {
-                    Program.PrintOut("Я вас не понимаю :(");
+                    return game.PlayGame();
                 }
-                return game.PlayGame();
-            } else {
-                game.PutAnswer(game.currentQuestion, command);
-                game.Questions.remove(game.currentQuestion);
-                game.askedQuestions++;
-                return game.PlayGame();
-            }
-        } else if (game.askedQuestions == game.questionCount) {
+                if (command.equals("да") || command.equals("нет")){
+                    game.PutAnswer(game.currentQuestion, command);
+                    game.Questions.remove(game.currentQuestion);
+                    game.askedQuestions++;
+                    return game.PlayGame();
+                }
+                return "Я вас не понимаю :(";
+        } else if (game != null && game.askedQuestions == game.questionCount) {
             return ("Для следующего раунда введите /again. Для выхода из игры введите /exit.");
         }
         return ("Такой команды не существует...");
+    }
+
+    private static boolean isCommand(String text) {
+        return text.startsWith("/");
+    }
+
+    public static boolean isQuestion(String text) {
+        for (var question : game.Questions) {
+            if (text.equals(question.split(": ")[1])) {
+                return true;
+            }
+        }
+        return false;
     }
 }

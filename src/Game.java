@@ -1,12 +1,9 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Random;
 
 public class Game {
-    public int compScore;
-    public int userScore;
-    public boolean isBegan = false;
-    public String currentQuestion = "";
     public static int questionCount = 11;
-    public int askedQuestions = 0;
     public static String Rules = "Для начала игры введите /start.\nЧтобы узнать правила, введите /help.\nЧтобы узнать счёт, введите /score.\nЧтобы начать сначала, введите /again.\nЧтобы выйти из игры, введите /exit";
     public static Animal[] animals = {
             new Animal("ворон", "черный", "лес", "маленький"),
@@ -14,17 +11,22 @@ public class Game {
             new Animal("кит", "синий", "вода", "большой"),
             //new Animal(),
     };
-    public Animal myAnimal = new Animal("myAnimal", "", "", "");
+    public static ArrayList<String> Questions;
     private static Random rnd = new Random();
     private static String[] colors = {"белый", "черный", "синий", "оранжевый"};
     private static String[] area = {"джунгли", "лес", "пустыня", "вода"};
     private static String[] size = {"большой", "средний", "маленький"};
-    public static ArrayList Questions;
+    public int compScore;
+    public int userScore;
+    public boolean isBegan = false;
+    public String currentQuestion;
+    public int askedQuestions = 0;
+    public Animal myAnimal = new Animal("myAnimal", "", "", "");
     private HashMap<String, String> Answers = new HashMap<String, String>();
 
     public Game() {
         isBegan = true;
-        Questions = new ArrayList();
+        Questions = new ArrayList<String>();
         MakeQuestions();
     }
 
@@ -49,15 +51,19 @@ public class Game {
     }
 
     public void MakeAnimal() {
-        for (String question : Answers.keySet()) {
-            if (Answers.get(question).equals("да")) {
-                String[] temp = question.split(" ");
-                if (question.split(":")[0].equals("area")) {
-                    myAnimal.area = temp[temp.length - 1];
-                } else if (question.split(":")[0].equals("color")) {
-                    myAnimal.color = temp[temp.length - 1];
-                } else if (question.split(":")[0].equals("size")) {
-                    myAnimal.size = temp[temp.length - 1];
+        if (!Answers.isEmpty()) {
+            for (String question : Answers.keySet()) {
+                if (question != null) {
+                    if (Answers.get(question).equals("да")) {
+                        String[] temp = question.split(" ");
+                        if (question.split(":")[0].equals("area")) {
+                            myAnimal.area = temp[temp.length - 1];
+                        } else if (question.split(":")[0].equals("color")) {
+                            myAnimal.color = temp[temp.length - 1];
+                        } else if (question.split(":")[0].equals("size")) {
+                            myAnimal.size = temp[temp.length - 1];
+                        }
+                    }
                 }
             }
         }
