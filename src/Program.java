@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Program {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException {
         Scanner newscan = new Scanner(System.in);//.useDelimiter(" ");
         MyDialog dialog = new MyDialog();
         while (true) {

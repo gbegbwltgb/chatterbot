@@ -1,8 +1,8 @@
 public class Animal {
-    String name;
-    String color;
-    String area;
-    String size;
+    public String name;
+    public String color;
+    public String area;
+    public String size;
 
     public Animal(String iName, String iColor, String iArea, String iSize) {
         name = iName;
@@ -11,7 +11,10 @@ public class Animal {
         size = iSize;
     }
 
-    public static boolean equals(Animal animal1, Animal animal2){
-        return animal1.color.equals(animal2.color) && animal1.area.equals(animal2.area) && animal1.size.equals(animal2.size);
+    public boolean isSimilar(Animal animal2) {
+        if (animal2 != null) {
+            return this.color.equals(animal2.color) && this.area.equals(animal2.area) && this.size.equals(animal2.size);
+        }
+        return false;
     }
 }
