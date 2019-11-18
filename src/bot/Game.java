@@ -1,10 +1,9 @@
+package bot;
+
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 
 public class Game {
-    public Round currentRound;
-    public int roundCount;
     public static String Rules =
             "Для начала игры введите /start.\n" +
                     "Чтобы узнать правила, введите /help.\n" +
@@ -18,22 +17,19 @@ public class Game {
             //new Animal(),
     };
     public static ArrayList<Question> Questions;
-    public static HashMap<String, String[]> params = new HashMap<>();
+    public static HashMap<Category, String[]> params = new HashMap<>();
+    public Round currentRound;
+    public int roundCount;
     public String userName;
     public int compScore;
     public int userScore;
 
     public Game() {
-        params.put("color", new String[]{"белый", "черный", "синий", "оранжевый"});
-        params.put("area", new String[]{"джунгли", "лес", "пустыня", "вода"});
-        params.put("size", new String[]{"большой", "средний", "маленький"});
+        params.put(Category.COLOR, new String[]{"белый", "черный", "синий", "оранжевый"});
+        params.put(Category.AREA, new String[]{"джунгли", "лес", "пустыня", "вода"});
+        params.put(Category.SIZE, new String[]{"большой", "средний", "маленький"});
 
         Questions = QuestionFactory.makeQuestions(params);
-        Collections.shuffle(Questions);
-    }
-
-    public void putAnswer(Question question, String answer) {
-        currentRound.Answers.put(question, answer);
     }
 
     public void makeScore() {
@@ -46,14 +42,13 @@ public class Game {
         }
     }
 
-    public void setUserName(String name) {
+    public String setUserName(String name) {
         userName = name;
-        Program.PrintOut(String.format("Игра началась, %s.\nЗагадайте животное.", userName));
+        return String.format("Игра началась, %s.\nЗагадайте животное.\n", userName);
     }
 
     public void updateGame() {
         Questions = QuestionFactory.makeQuestions(params);
-        Collections.shuffle(Questions);
         if (currentRound.isFinished) roundCount++;
         currentRound = new Round(Questions);
     }
@@ -66,22 +61,21 @@ public class Game {
         return "Введите ваше имя.";
     }
 
-    public String repeatGame() throws NoSuchFieldException, IllegalAccessException {
+    public String repeatGame() {
         if (currentRound != null) {
-            Program.PrintOut("Что ж, попробуем ещё раз.");
             updateGame();
-            return currentRound.play();
+            return "Что ж, попробуем ещё раз.\n" + currentRound.play();
         } else {
             return "Вы еще не начали игру. Чтобы начать, введите /start.";
         }
     }
 
-    public String playGame(String command) throws NoSuchFieldException, IllegalAccessException {
+    public String playGame(String command) {
         if (userName == null) {
-            setUserName(command);
-            return currentRound.play();
+            var text = setUserName(command);
+            return text + currentRound.play();
         } else if (command.equals("да") || command.equals("нет")) {
-            putAnswer(currentRound.currentQuestion, command);
+            currentRound.putAnswer(currentRound.currentQuestion, command);
             currentRound.askedQuestionCount++;
             var result = currentRound.play();
             if (currentRound.isFinished) {

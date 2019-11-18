@@ -1,20 +1,12 @@
+package tests;
+
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import bot.*;
 
 class GameTest {
-
-    @Test
-    void putAnswer() {
-        Game game = new Game();
-        game.currentRound = new Round(game.Questions);
-        var question = new Question("category", "feature");
-        game.putAnswer(question, "answer");
-        var expected = game.currentRound.Answers.get(question);
-        var result = "answer";
-        Assert.assertEquals(expected, result);
-    }
 
     @Test
     void makeScore_oneRoundFinished() {

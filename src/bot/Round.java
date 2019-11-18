@@ -1,4 +1,7 @@
+package bot;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class Round {
@@ -6,16 +9,17 @@ public class Round {
     public int askedQuestionCount;
     public int questionCount;
     public Question currentQuestion;
-    public ArrayList<Question> Questions;
-    public HashMap<Question, String> Answers = new HashMap<>();
+    public ArrayList<Question> questions;
+    public HashMap<Question, Boolean> answers = new HashMap<>();
     public String winner;
 
     public Round(ArrayList<Question> questions) {
-        Questions = questions;
-        questionCount = Questions.size();
+        this.questions = questions;
+        Collections.shuffle(questions);
+        questionCount = questions.size();
     }
 
-    public Animal guessAnimal(HashMap<Question, String> answers, Animal[] animals) throws NoSuchFieldException, IllegalAccessException {
+    public Animal guessAnimal(HashMap<Question, Boolean> answers, Animal[] animals) {
         Animal myAnimal = AnimalFactory.makeAnimal(answers);
         for (Animal animal : animals) {
             if (animal.isSimilar(myAnimal)) {
@@ -29,23 +33,25 @@ public class Round {
         return questions.get(number);
     }
 
-    public String play() throws NoSuchFieldException, IllegalAccessException {
-        if (askedQuestionCount < questionCount) {
-            currentQuestion = getNextQuestion(Questions, askedQuestionCount);
-            Animal animal = guessAnimal(Answers, Game.Animals);
+    public void putAnswer(Question question, String answer) {
+        if (answer.equals("да")) {
+            answers.put(question, Boolean.TRUE);
+        } else {
+            answers.put(question, Boolean.FALSE);
+        }
+    }
+
+    public String play() {
+        if (askedQuestionCount <= questionCount) {
+            Animal animal = guessAnimal(answers, Game.Animals);
             if (animal != null) {
                 isFinished = true;
                 winner = "computer";
                 return String.format("Дайте-ка подумать...\nЗагаданное животное - %s.", animal.name);
-            } else {
+            } else if (askedQuestionCount < questionCount) {
+                currentQuestion = getNextQuestion(questions, askedQuestionCount);
                 return (currentQuestion.question);
             }
-        }
-        Animal animal = guessAnimal(Answers, Game.Animals); //проверка последнего вопроса
-        if (animal != null) {
-            isFinished = true;
-            winner = "computer";
-            return String.format("Загаданное животное - %s.", animal.name);
         }
         isFinished = true;
         winner = "user";

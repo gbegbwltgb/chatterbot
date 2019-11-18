@@ -1,14 +1,16 @@
+package bot;
+
 public class Animal {
     public String name;
     public String color;
     public String area;
     public String size;
 
-    public Animal(String iName, String iColor, String iArea, String iSize) {
-        name = iName;
-        color = iColor;
-        area = iArea;
-        size = iSize;
+    public Animal(String name, String color, String area, String size) {
+        this.name = name;
+        this.color = color;
+        this.area = area;
+        this.size = size;
     }
 
     public boolean isSimilar(Animal animal2) {

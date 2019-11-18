@@ -1,3 +1,5 @@
+package bot;
+
 import java.util.Scanner;
 
 public class Program {
@@ -5,8 +7,8 @@ public class Program {
         Scanner newscan = new Scanner(System.in);//.useDelimiter(" ");
         MyDialog dialog = new MyDialog();
         while (true) {
-            var command = newscan.next();
-            PrintOut(dialog.GetReaction(command));
+            var command = newscan.nextLine();
+            PrintOut(dialog.getReaction(command));
         }
         //newscan.close();
     }

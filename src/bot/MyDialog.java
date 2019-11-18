@@ -1,12 +1,18 @@
+package bot;
+
 public class MyDialog {
-    public static Game game = new Game();
+    public Game game = new Game();
 
     public MyDialog() {
         Program.PrintOut("Добро пожаловать в игру. Игрок должен загадать животное, задача компьютера - \nугадать, что это за животное.");
         Program.PrintOut(Game.Rules);
     }
 
-    public static String GetReaction(String command) throws NoSuchFieldException, IllegalAccessException {
+    private static boolean isCommand(String text) {
+        return text.startsWith("/");
+    }
+
+    public String getReaction(String command) {
         if (command.equals("/start")) {
             return game.startGame();
         } else if (command.equals("/again")) {
@@ -24,9 +30,5 @@ public class MyDialog {
             return game.playGame(command);
         }
         return ("Для следующего раунда введите /again. Для выхода из игры введите /exit.");
-    }
-
-    private static boolean isCommand(String text) {
-        return text.startsWith("/");
     }
 }
